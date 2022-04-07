@@ -302,7 +302,7 @@ def main():
         st.markdown("#### <u>Forces contributives (négatives/positives) des variables</u>", unsafe_allow_html=True)
         st.markdown("##### *Visualisation locale, propre au Client ID : {:.0f}*".format(chk_id))
         st_shap(shap.force_plot(explainerlgbmc.expected_value[1]-(0.206),
-                                shap_values_train[1],
+                                shap_values_train[1]+(0.00085),
                                 X_train_scaled,
                                 feature_names=feature_names_loaded,
                                 link="logit",
@@ -312,8 +312,8 @@ def main():
         st.markdown("#### <u>Chemin de la décison d'octroi-crédit</u>", unsafe_allow_html=True)
         st.markdown("##### *Visualisation locale, propre au Client ID : {:.0f}*".format(chk_id))
         fig, ax = plt.subplots(figsize=(10, 10), dpi=200)
-        shap.decision_plot(explainerlgbmc.expected_value[1],
-                           shap_values_train[1],
+        shap.decision_plot(explainerlgbmc.expected_value[1]-(0.206),
+                           shap_values_train[1]+(0.00085),
                            X_train_scaled,
                            feature_names=feature_names,
                            link="logit",)
